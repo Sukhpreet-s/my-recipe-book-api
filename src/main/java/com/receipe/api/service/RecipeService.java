@@ -26,7 +26,7 @@ public class RecipeService {
 
     public Recipe getRecipeById(String id) throws Exception {
         Optional<Recipe> recipe = recipeRepository.findById(id);
-        if(!recipe.isPresent()) {
+        if(recipe.isEmpty()) {
             throw new Exception();
         }
         return recipe.get();
@@ -39,7 +39,7 @@ public class RecipeService {
 
     public ResponseDTO updateRecipe(Recipe newRecipe) throws Exception {
         Optional<Recipe> foundRecipe = recipeRepository.findById(newRecipe.getId());
-        if(!foundRecipe.isPresent()) {
+        if(foundRecipe.isEmpty()) {
             throw new Exception("Recipe not found!"); //create RecipeNotExistException and throw that
         }
         recipeRepository.save(newRecipe);
@@ -48,7 +48,7 @@ public class RecipeService {
 
     public ResponseDTO deleteRecipeById(String id) throws Exception {
         Optional<Recipe> foundRecipe = recipeRepository.findById(id);
-        if(!foundRecipe.isPresent()) {
+        if(foundRecipe.isEmpty()) {
             throw new Exception("Recipe not found");
         }
         recipeRepository.deleteById(id);
