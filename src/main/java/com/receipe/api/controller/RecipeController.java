@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipe")
+@RequestMapping(value = "/recipe")
 public class RecipeController {
 
     private RecipeService recipeService;
@@ -22,7 +22,7 @@ public class RecipeController {
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
-    @GetMapping("/")
+    @GetMapping("")
     public List<Recipe> getRecipes() {
         return recipeService.getAll();
     }
@@ -32,13 +32,13 @@ public class RecipeController {
         return recipeService.getRecipeById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<ResponseDTO> addRecipe(@RequestBody @Validated Recipe recipe) {
         ResponseDTO response = recipeService.addRecipe(recipe);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
-    @PutMapping("/")
+    @PutMapping("")
     public ResponseEntity<ResponseDTO> updateRecipe(@RequestBody @Validated Recipe recipe) throws Exception {
         ResponseDTO responseDTO = recipeService.updateRecipe(recipe);
         return ResponseEntity.status(responseDTO.getStatus()).body(responseDTO);
