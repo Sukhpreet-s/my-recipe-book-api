@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
+@RequestMapping("/recipe")
 public class RecipeController {
 
     private RecipeService recipeService;
@@ -20,29 +21,30 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/recipe")
+    @CrossOrigin(origins = "http://localhost:9000")
+    @GetMapping("/")
     public List<Recipe> getRecipes() {
         return recipeService.getAll();
     }
 
-    @GetMapping("/recipe/{id}")
+    @GetMapping("/{id}")
     public Recipe getRecipeById(@PathVariable("id") String id) throws Exception{
         return recipeService.getRecipeById(id);
     }
 
-    @PostMapping("/recipe")
+    @PostMapping("/")
     public ResponseEntity<ResponseDTO> addRecipe(@RequestBody @Validated Recipe recipe) {
         ResponseDTO response = recipeService.addRecipe(recipe);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
-    @PutMapping("/recipe")
+    @PutMapping("/")
     public ResponseEntity<ResponseDTO> updateRecipe(@RequestBody @Validated Recipe recipe) throws Exception {
         ResponseDTO responseDTO = recipeService.updateRecipe(recipe);
         return ResponseEntity.status(responseDTO.getStatus()).body(responseDTO);
     }
 
-    @DeleteMapping("/recipe/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ResponseDTO> deleteRecipe(@PathVariable("id") String id) throws Exception {
         ResponseDTO responseDTO = recipeService.deleteRecipeById(id);
         return ResponseEntity.status(responseDTO.getStatus()).body(responseDTO);
