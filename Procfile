@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/dependency/* com.receipe.api.ApiApplication
+web: java -cp target/classes/:target/dependency/* com.receipe.api.ApiApplication
