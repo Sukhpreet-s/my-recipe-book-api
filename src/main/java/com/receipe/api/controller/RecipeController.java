@@ -8,6 +8,7 @@ import com.receipe.api.model.ResponseDTO;
 import com.receipe.api.service.RecipeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -36,26 +37,24 @@ public class RecipeController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDTO> addRecipe(@RequestBody @Validated RecipeDTO dto) {
+    public ResponseEntity<RecipeDTO> addRecipe(@RequestBody @Validated RecipeDTO dto) {
         ModelMapper mapper = ModelMapperUtil.getInstance();
         Recipe recipe = mapper.map(dto, Recipe.class);
 
-        ResponseDTO response = recipeService.addRecipe(recipe);
-        return ResponseEntity.status(response.getStatus()).body(response);
+        return ResponseEntity.ok(mapper.map(recipeService.addRecipe(recipe), RecipeDTO.class));
     }
 
     @PutMapping
-    public ResponseEntity<ResponseDTO> updateRecipe(@RequestBody @Validated RecipeDTO dto) throws Exception {
+    public ResponseEntity<RecipeDTO> updateRecipe(@RequestBody @Validated RecipeDTO dto) throws Exception {
         ModelMapper mapper = ModelMapperUtil.getInstance();
         Recipe recipe = mapper.map(dto, Recipe.class);
 
-        ResponseDTO responseDTO = recipeService.updateRecipe(recipe);
-        return ResponseEntity.status(responseDTO.getStatus()).body(responseDTO);
+        return ResponseEntity.ok(mapper.map(recipeService.updateRecipe(recipe), RecipeDTO.class));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseDTO> deleteRecipe(@PathVariable("id") String id) throws Exception {
-        ResponseDTO responseDTO = recipeService.deleteRecipeById(id);
-        return ResponseEntity.status(responseDTO.getStatus()).body(responseDTO);
+        recipeService.deleteRecipeById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

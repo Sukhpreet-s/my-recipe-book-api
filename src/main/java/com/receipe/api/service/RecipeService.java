@@ -32,26 +32,23 @@ public class RecipeService {
         return recipe.get();
     }
 
-    public ResponseDTO addRecipe(Recipe recipe) {
-        recipeRepository.insert(recipe);
-        return new ResponseDTO(HttpStatus.OK, "Success");
+    public Recipe addRecipe(Recipe recipe) {
+        return recipeRepository.insert(recipe);
     }
 
-    public ResponseDTO updateRecipe(Recipe newRecipe) throws Exception {
+    public Recipe updateRecipe(Recipe newRecipe) throws Exception {
         Optional<Recipe> foundRecipe = recipeRepository.findById(newRecipe.getId());
         if(!foundRecipe.isPresent()) {
-            throw new Exception("Recipe not found!"); //create RecipeNotExistException and throw that
+            throw new Exception("Recipe not found!");
         }
-        recipeRepository.save(newRecipe);
-        return new ResponseDTO(HttpStatus.OK, "Success");
+        return recipeRepository.save(newRecipe);
     }
 
-    public ResponseDTO deleteRecipeById(String id) throws Exception {
+    public void deleteRecipeById(String id) throws Exception {
         Optional<Recipe> foundRecipe = recipeRepository.findById(id);
         if(!foundRecipe.isPresent()) {
             throw new Exception("Recipe not found");
         }
         recipeRepository.deleteById(id);
-        return new ResponseDTO(HttpStatus.OK, "Success");
     }
 }
