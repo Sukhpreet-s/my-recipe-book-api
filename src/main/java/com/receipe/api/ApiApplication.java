@@ -19,6 +19,6 @@ class IndexController {
 
     @GetMapping("/")
     String hello(){
-        return "Application is working now!";
+        return "Application is working now! yohoo";
     }
 }
