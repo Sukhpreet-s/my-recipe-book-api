@@ -1,1 +1,1 @@
-web: java -cp target/classes/:target/dependency/* com.receipe.api.ApiApplication
+web: java -jar target/api-0.0.1-SNAPSHOT.jar
