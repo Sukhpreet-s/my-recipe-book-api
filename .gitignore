@@ -30,7 +30,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-
-# temp
-Procfile
