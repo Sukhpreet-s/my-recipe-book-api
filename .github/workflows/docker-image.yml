@@ -1,0 +1,28 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repo
+    - uses: actions/checkout@v3
+    
+    - name: Setup java and maven
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'oracle'
+        java-version: '8'
+    - uses: stCarolas/setup-maven@v4.5
+      with:
+        maven-version: 4.0.0
+        
+    - name: Build project
+    - run: mvn clean package
+    
+    - name: Build and push to Docker Hub
+      run: docker build . --file Dockerfile --tag my-recipe-book-api:latest
