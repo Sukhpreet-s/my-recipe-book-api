@@ -12,11 +12,13 @@ jobs:
     - name: Check out the repo
     - uses: actions/checkout@v3
     
-    - name: Setup java and maven
+    - name: Setup java
     - uses: actions/setup-java@v3
       with:
         distribution: 'oracle'
         java-version: '8'
+        
+    - name: Setup maven
     - uses: stCarolas/setup-maven@v4.5
       with:
         maven-version: 4.0.0
