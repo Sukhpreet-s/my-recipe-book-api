@@ -34,7 +34,7 @@ jobs:
 
     - name: Build and push docker
       run: |
-        docker build -t my-recipe-book-api:latest
+        docker build -t my-recipe-book-api:latest .
         docker push sukhpreets/my-recipe-book-api:latest
     
     # - name: Build and push
