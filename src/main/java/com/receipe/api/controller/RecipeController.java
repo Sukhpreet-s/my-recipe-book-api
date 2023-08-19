@@ -2,15 +2,17 @@ package com.receipe.api.controller;
 
 import com.receipe.api.common.utils.ModelMapperUtil;
 import com.receipe.api.controller.dto.RecipeDTO;
-import com.receipe.api.model.Ingredient;
 import com.receipe.api.model.Recipe;
 import com.receipe.api.model.ResponseDTO;
+import com.receipe.api.service.FileUploadService;
 import com.receipe.api.service.RecipeService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -20,10 +22,12 @@ import java.util.List;
 public class RecipeController {
 
     private RecipeService recipeService;
+    private FileUploadService fileUploadService;
 
     @Autowired
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, FileUploadService fileUploadService) {
         this.recipeService = recipeService;
+        this.fileUploadService = fileUploadService;
     }
 
     @GetMapping
@@ -56,5 +60,12 @@ public class RecipeController {
     public ResponseEntity<ResponseDTO> deleteRecipe(@PathVariable("id") String id) throws Exception {
         recipeService.deleteRecipeById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/upload-multi-images")
+    public ResponseEntity<List<String>> uploadMultipleImages(MultipartFile[] images) throws Exception {
+        
+        List<String> imageUrls = fileUploadService.uploadMultipleImages(images);
+        return ResponseEntity.ok(imageUrls);
     }
 }

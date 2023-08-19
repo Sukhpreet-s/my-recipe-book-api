@@ -1,6 +1,5 @@
 package com.receipe.api.controller.dto;
 
-import com.receipe.api.model.Ingredient;
 import lombok.Data;
 
 import java.util.List;

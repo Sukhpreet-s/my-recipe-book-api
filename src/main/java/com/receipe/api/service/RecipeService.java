@@ -1,10 +1,8 @@
 package com.receipe.api.service;
 
 import com.receipe.api.model.Recipe;
-import com.receipe.api.model.ResponseDTO;
 import com.receipe.api.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
