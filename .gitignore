@@ -30,3 +30,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Spring Boot ###
+application.properties
+temp
