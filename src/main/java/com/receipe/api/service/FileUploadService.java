@@ -45,6 +45,7 @@ public class FileUploadService {
 					// image.transferTo(Paths.get(IMAGES_DIR_PATH, fullFilename));
 					
 				} catch (Exception e) {
+					// TODO: Implement a logger here, log the exception instead of throwing it.
 					throw new Exception(e);
 				}
 
