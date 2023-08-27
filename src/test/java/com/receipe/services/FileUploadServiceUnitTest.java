@@ -133,7 +133,7 @@ public class FileUploadServiceUnitTest {
 	 * @return String absolute path to the given image.
 	 */
 	private String getImgPath(String imgName) {
-		return System.getProperty("user.dir") + "\\test-img\\" + imgName;
+		return System.getProperty("user.dir") + "\\src\\test\\resources\\test-img\\" + imgName;
 	}
 
 }
