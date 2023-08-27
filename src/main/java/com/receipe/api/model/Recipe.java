@@ -17,6 +17,7 @@ public class Recipe {
     @NotNull
     private String recipeInstruction;
     private List<Ingredient> ingredients;
+    private List<String> images;
 
     public Recipe(@NotNull String dishName, @NotNull String recipeInstruction, List<Ingredient> ingredients) {
         this.dishName = dishName;
