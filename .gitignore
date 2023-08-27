@@ -32,5 +32,5 @@ build/
 .vscode/
 
 ### Spring Boot App ###
-application.properties
+*/main/*/application.properties
 temp
