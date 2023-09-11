@@ -33,3 +33,6 @@ build/
 
 ### Spring Boot App ###
 temp
+
+### My app ###
+sample-db-data.json
