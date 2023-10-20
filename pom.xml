@@ -54,6 +54,13 @@
         </dependency>
         <!-- End Development packages -->
 
+        <!-- Documentation packages  -->
+        <dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.2.32</version>
+		</dependency>
+        <!-- End Documentation packages  -->
 
         <!-- Testing -->
         <dependency>
